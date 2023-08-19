@@ -1,6 +1,8 @@
 package repository
 
+import "learn-ci/entity"
+
 type MemoRepository interface {
-	Save()
-	Read()
+	Save(*entity.MemoEntity) error
+	Read(author string) *entity.MemoEntity
 }
