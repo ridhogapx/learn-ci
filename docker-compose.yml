@@ -1,22 +1,14 @@
 version: '3'
-
-networks:
-  memonet:
-    ipam:
-      driver: default
       
-
 services:
   app:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: memo-app
     ports:
       - "8080:8080"
     networks:
       memonet:
-        ipv4_address: 172.17.0.2
+        ipv4_address: 10.10.10.2
     depends_on:
       - db
     environment:
@@ -27,7 +19,7 @@ services:
 
   db:
     image: postgres:15-alpine
-    container_name: memo_db
+    container_name: memo-db
     ports:
       - "5432:5432"
     environment:
@@ -36,5 +28,11 @@ services:
       - POSTGRES_DB=memo
     networks:
       memonet:
-        ipv4_address: 172.17.0.3
+        ipv4_address: 10.10.10.3
 
+networks:
+  memonet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.10.0/24
