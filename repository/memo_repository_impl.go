@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"learn-ci/entity"
 	"learn-ci/model"
 
@@ -34,6 +35,12 @@ func (repository memoRepositoryImpl) Read(author string) (*entity.MemoEntity, er
 
 	if result.Error != nil {
 		return nil, result.Error
+	}
+
+	row := result.RowsAffected
+
+	if row == 0 {
+		return nil, errors.New("record not found")
 	}
 
 	return &entity.MemoEntity{
