@@ -12,16 +12,16 @@ type MemoController struct {
 	Service service.MemoService
 }
 
-func NewMemoController(service *service.MemoService) MemoController {
-	return MemoController{Service: *service}
+func NewMemoController(service service.MemoService) MemoController {
+	return MemoController{Service: service}
 }
 
-func (controller *MemoController) Route(r *gin.Engine) {
+func (controller MemoController) Route(r *gin.Engine) {
 	r.POST("/api/v1/memo", controller.AddMemo)
-	r.GET("/api/v1/memo/:author")
+	r.GET("/api/v1/memo/:author", controller.GetMemo)
 }
 
-func (controller *MemoController) AddMemo(ctx *gin.Context) {
+func (controller MemoController) AddMemo(ctx *gin.Context) {
 	var request model.AddMemoRequest
 	err := ctx.BindJSON(&request)
 
@@ -50,7 +50,7 @@ func (controller *MemoController) AddMemo(ctx *gin.Context) {
 
 }
 
-func (controller *MemoController) GetMemo(ctx *gin.Context) {
+func (controller MemoController) GetMemo(ctx *gin.Context) {
 	param := ctx.Param("author")
 
 	res, err := controller.Service.GetMemo(model.GetMemoRequest{
