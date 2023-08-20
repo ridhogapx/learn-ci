@@ -1,8 +1,10 @@
 package service
 
-import "learn-ci/entity"
+import (
+	"learn-ci/model"
+)
 
 type MemoService interface {
-	GetMemo(author string) (*entity.MemoEntity, error)
-	AddMemo(entity.MemoEntity) (bool, error)
+	GetMemo(model.GetMemoRequest) (model.GetMemoResponse, error)
+	AddMemo(model.AddMemoRequest) (bool, error)
 }

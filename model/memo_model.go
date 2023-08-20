@@ -19,7 +19,7 @@ type GetMemoResponse struct {
 	Author string `json:"author"`
 }
 
-type AddMmemoRequest struct {
+type AddMemoRequest struct {
 	Title  string `json:"title"`
 	Body   string `json:"body"`
 	Author string `json:"author"`
