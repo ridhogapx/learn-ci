@@ -8,3 +8,19 @@ type Memo struct {
 	Body   string
 	Author string
 }
+
+type GetMemoRequest struct {
+	Author string `json:"author"`
+}
+
+type GetMemoResponse struct {
+	Title  string `json:"title"`
+	Body   string `json:"body"`
+	Author string `json:"author"`
+}
+
+type AddMmemoRequest struct {
+	Title  string `json:"title"`
+	Body   string `json:"body"`
+	Author string `json:"author"`
+}
