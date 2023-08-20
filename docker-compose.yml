@@ -1,3 +1,11 @@
+version: '3'
+
+networks:
+  memonet:
+    ipam:
+      driver: default
+      
+
 services:
   app:
     build: 
@@ -7,8 +15,8 @@ services:
     ports:
       - "8080:8080"
     networks:
-      memo_network:
-        ipv4_address: 172.17.1.2
+      memonet:
+        ipv4_address: 172.17.0.2
     depends_on:
       - db
     environment:
@@ -26,5 +34,7 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=memo
+    networks:
+      memonet:
+        ipv4_address: 172.17.0.3
 
-    

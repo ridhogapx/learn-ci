@@ -8,7 +8,7 @@ import (
 )
 
 func NewDBConnection() *gorm.DB {
-	dsn := "host=localhost user=root password=root dbname=memo port=5432 sslmode=disable"
+	dsn := "host=172.17.0.3 user=root password=root dbname=memo port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
