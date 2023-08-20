@@ -17,11 +17,11 @@ func NewMemoController(service *service.MemoService) MemoController {
 }
 
 func (controller *MemoController) Route(r *gin.Engine) {
-	r.POST("/api/v1/memo")
+	r.POST("/api/v1/memo", controller.AddMemo)
 	r.GET("/api/v1/memo/:author")
 }
 
-func (controller *MemoController) Create(ctx *gin.Context) {
+func (controller *MemoController) AddMemo(ctx *gin.Context) {
 	var request model.AddMemoRequest
 	err := ctx.BindJSON(&request)
 
@@ -39,6 +39,7 @@ func (controller *MemoController) Create(ctx *gin.Context) {
 			Message: "Failed to add memo!",
 			Data:    nil,
 		})
+		return
 	}
 
 	ctx.JSON(http.StatusCreated, model.WebResponse{
@@ -47,4 +48,27 @@ func (controller *MemoController) Create(ctx *gin.Context) {
 		Data:    request,
 	})
 
+}
+
+func (controller *MemoController) GetMemo(ctx *gin.Context) {
+	param := ctx.Param("author")
+
+	res, err := controller.Service.GetMemo(model.GetMemoRequest{
+		Author: param,
+	})
+
+	if err != nil {
+		ctx.JSON(http.StatusNotFound, model.WebResponse{
+			Code:    int32(http.StatusNotFound),
+			Message: "Not found",
+			Data:    nil,
+		})
+		return
+	}
+
+	ctx.JSON(http.StatusFound, model.WebResponse{
+		Code:    int32(http.StatusFound),
+		Message: "Successfully retrieve data!",
+		Data:    res,
+	})
 }
