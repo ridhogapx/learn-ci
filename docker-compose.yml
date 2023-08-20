@@ -1,0 +1,30 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: memo-app
+    ports:
+      - "8080:8080"
+    networks:
+      memo_network:
+        ipv4_address: 172.17.1.2
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=memo
+      - POSTGRES_HOST=db
+
+  db:
+    image: postgres:15-alpine
+    container_name: memo_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=memo
+
+    
