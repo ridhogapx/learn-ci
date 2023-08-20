@@ -27,3 +27,19 @@ func (repository memoRepositoryImpl) Save(memo *entity.MemoEntity) error {
 	repository.Query.Create(&newMemo)
 	return nil
 }
+
+func (repository memoRepositoryImpl) Read(author string) (*entity.MemoEntity, error) {
+	var memo model.Memo
+	result := repository.Query.Find(&memo, "author = ?", author)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &entity.MemoEntity{
+		Title:  memo.Title,
+		Body:   memo.Body,
+		Author: memo.Author,
+	}, nil
+
+}
