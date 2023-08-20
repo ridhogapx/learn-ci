@@ -26,7 +26,7 @@ func (repository *MemoRepositoryMock) Read(author string) (*entity.MemoEntity, e
 	arg := repository.Mock.Called(author)
 
 	if arg.Get(0) == nil {
-		return nil, errors.New("Not found")
+		return nil, errors.New("not found")
 	}
 
 	return arg.Get(0).(*entity.MemoEntity), nil
