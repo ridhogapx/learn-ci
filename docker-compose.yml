@@ -2,10 +2,10 @@ version: '3'
       
 services:
   app:
-    build: .
+    image: learn-ci
     container_name: memo-app
     ports:
-      - "8080:8080"
+      - 8080:8080
     networks:
       memonet:
         ipv4_address: 10.10.10.2
@@ -21,7 +21,7 @@ services:
     image: postgres:15-alpine
     container_name: memo-db
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root

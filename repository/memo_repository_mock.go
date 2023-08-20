@@ -29,5 +29,7 @@ func (repository *MemoRepositoryMock) Read(author string) (*entity.MemoEntity, e
 		return nil, errors.New("not found")
 	}
 
-	return arg.Get(0).(*entity.MemoEntity), nil
+	memo := arg.Get(0).(entity.MemoEntity)
+
+	return &memo, nil
 }
