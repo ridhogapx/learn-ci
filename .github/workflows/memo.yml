@@ -26,8 +26,8 @@ jobs:
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.PORT}}
-        script: |
-          cd ~/learn-ci
-          git pull origin main
-          docker compose up --build
+          script: |
+            cd ~/learn-ci
+            git pull origin main
+            docker compose up --build
           
