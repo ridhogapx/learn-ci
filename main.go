@@ -19,6 +19,6 @@ func main() {
 
 	memoController.Route(r)
 
-	r.Run(":8080")
+	r.Run(":80")
 
 }

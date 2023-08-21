@@ -10,6 +10,6 @@ RUN go mod tidy
 
 RUN go build -o /learn-ci/bin/main /learn-ci/main.go
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["/learn-ci/bin/main"]
