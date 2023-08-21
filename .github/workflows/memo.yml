@@ -41,7 +41,7 @@ jobs:
             ${{env.LATEST_TAG}}
 
           build-args:
-            ${{ steps.version_step.outputs.version }}
+            ${{ env.VERSION_TAG }}
         
 
 
