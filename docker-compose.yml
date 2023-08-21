@@ -15,7 +15,9 @@ services:
         ipv4_address: 10.10.10.3
   
   app:
-    build: .
+    build: 
+      dockerfile: Dockerfile
+      context: .
     container_name: memo-app
     networks:
       memonet:

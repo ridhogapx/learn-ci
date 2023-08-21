@@ -12,4 +12,4 @@ RUN go build -o /learn-ci/bin/main /learn-ci/main.go
 
 EXPOSE 80
 
-CMD ["/learn-ci/bin/main"]
+ENTRYPOINT  "/learn/ci/bin/main" --port 80
