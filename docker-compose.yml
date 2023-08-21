@@ -5,7 +5,7 @@ services:
     image: postgres:15-alpine
     container_name: memo-db
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
@@ -20,7 +20,7 @@ services:
       context: .
     container_name: memo-app
     ports:
-      - "80:80"
+      - 80:80
     networks:
       memonet:
         ipv4_address: 10.10.10.2
