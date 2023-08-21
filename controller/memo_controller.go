@@ -19,6 +19,13 @@ func NewMemoController(service service.MemoService) MemoController {
 func (controller MemoController) Route(r *gin.Engine) {
 	r.POST("/api/v1/memo", controller.AddMemo)
 	r.GET("/api/v1/memo/:author", controller.GetMemo)
+	r.GET("/", controller.Home)
+}
+
+func (MemoController) Home(ctx *gin.Context) {
+	ctx.JSON(200, gin.H{
+		"message": "welcome to my memo",
+	})
 }
 
 func (controller MemoController) AddMemo(ctx *gin.Context) {
